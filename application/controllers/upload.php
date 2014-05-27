@@ -10,6 +10,19 @@ class Upload extends CI_Controller {
 			echo "You submitted the form.";
 		}
 		
+		//PULL SOMETHING FROM ANOTHER FUNCTION
+		$message = $this->say_hello();
+		
+		//WE CAN ECHO SOMETHING HERE, EVEN THOUGH THAT'S BAD MVC FORM
+		echo $message;
+		
+		
 		$this->load->view('upload/form');
 	}
+	
+	function say_hello()
+	{
+		return "Justin loves Jim Morrison's Poetry.";
+	}
+	
 }
