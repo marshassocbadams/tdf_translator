@@ -10,14 +10,14 @@ class Upload extends CI_Controller {
 			echo "You submitted the form.";
 		}
 		
-		//PULL SOMETHING FROM ANOTHER FUNCTION
-		$message = $this->say_hello();
+		//SET UP A VARIABLE CALLED DATA TO HOLD THE INFORMATION THAT WE'RE GOING TO PASS TO THE VIEW
+		$data = array();
 		
-		//WE CAN ECHO SOMETHING HERE, EVEN THOUGH THAT'S BAD MVC FORM
-		echo $message;
+		//INSERT OUR MESSAGE INTO THE DATA ARRAY
+		$data['message'] = $this->say_hello();
 		
-		
-		$this->load->view('upload/form');
+		//LOAD THE VIEW ('UPLOAD/FORM') WITH THE DATA ARRAY ($DATA) INJECTED
+		$this->load->view('upload/form', array('data' => $data));
 	}
 	
 	function say_hello()
