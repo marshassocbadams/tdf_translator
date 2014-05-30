@@ -18,6 +18,10 @@
  * NOTE: If you change these, also change the error_reporting() code below
  *
  */
+ 
+ 
+ date_default_timezone_set("America/Chicago");
+ 
 	define('ENVIRONMENT', 'development');
 /*
  *---------------------------------------------------------------
