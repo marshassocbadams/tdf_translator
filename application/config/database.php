@@ -48,10 +48,11 @@
 $active_group = 'default';
 $active_record = TRUE;
 
+
 $db['default']['hostname'] = 'localhost';
-$db['default']['username'] = '';
-$db['default']['password'] = '';
-$db['default']['database'] = '';
+$db['default']['username'] = 'tdf_calc';
+$db['default']['password'] = 'mtr7nBEXRzEczN9CidY';
+$db['default']['database'] = 'db_tdf';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;
