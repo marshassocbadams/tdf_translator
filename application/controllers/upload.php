@@ -3,26 +3,40 @@
 class Upload extends CI_Controller {
 
 	function index()
-	{
-		//CHECK TO SEE IF FORM HAS BEEN SUBMITTED. IF IT HAS, SHOW WHAT WAS SENT. 
-		if ($this->input->post('submit'))
-		{
-			echo "You submitted the form.";
-		}
-		
-		//SET UP A VARIABLE CALLED DATA TO HOLD THE INFORMATION THAT WE'RE GOING TO PASS TO THE VIEW
-		$data = array();
-		
-		//INSERT OUR MESSAGE INTO THE DATA ARRAY
-		$data['message'] = $this->say_hello();
-		
-		//LOAD THE VIEW ('UPLOAD/FORM') WITH THE DATA ARRAY ($DATA) INJECTED
-		$this->load->view('upload/form', array('data' => $data));
+	{		
+		$this->load->view('upload/form');
 	}
 	
-	function say_hello()
+	function do_upload()
 	{
-		return "Justin loves Jim Morrison's Poetry.";
+		//SETUP THE CONFIG SPECS FOR THE UPLOAD LIBRARY
+		$config['upload_path'] 		= './temp/';
+		$config['allowed_types'] 	= 'txt';
+		$config['max_size']			= '1000';
+		$config['overwrite'] 		= TRUE;
+		$config['file_name'] 		= 'test.txt';
+
+		//LOAD THE UPLOAD LIBRARY WITH OUR SPECS
+		$this->load->library('upload', $config);
+
+		if ( ! $this->upload->do_upload('file_upload'))
+		{
+			$error = array('error' => $this->upload->display_errors());
+			
+			echo "<pre>"; 
+			print_r($this->upload->display_errors());
+			echo "</pre>";
+			
+			
+			$this->load->view('upload/form', $error);
+		}
+		else
+		{
+			$data = array('upload_data' => $this->upload->data());
+
+			$this->load->view('upload/form', $data);
+		}
 	}
+	
 	
 }
